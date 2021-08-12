@@ -42,7 +42,14 @@ function App() {
   // console.log("error", error);
   // console.log("res", emojisData);
 
-  return <div className="App">Hello WOrld</div>;
+  return (
+    <div>
+      <h1>Hello World</h1>
+      {loading && <p>Loading...</p>}
+      {error && <p>wahhh...</p>}
+      {emojisData.length > 0 && <p>Ada Emoji Nihh...</p>}
+    </div>
+  );
 }
 
 export default App;
