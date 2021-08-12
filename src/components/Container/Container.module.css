@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    padding:16px;
+    margin: 0 auto;
+    background-color: var(--main-container-color);
+    /* karena tinggi navbar 55px */
+    min-height: calc(100vh - 55px);
+}
