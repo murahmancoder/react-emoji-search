@@ -5,6 +5,7 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Container from "./components/Container/Container";
 import Empty from "./components/Empty/Empty";
+import Emojis from "./components/Emojis/Emojis";
 
 function App() {
   const [emojisData, setEmojisData] = useState([]);
@@ -52,7 +53,7 @@ function App() {
       <h1>Hello World</h1>
       {loading && <Empty text={'loading...'}/>}
       {error && <Empty text={'wah error nih...'}/>}
-      {emojisData.length > 0 && <Empty text={'Ada Emoji Nihhh...'}/>}
+      {emojisData.length > 0 && <Emojis emojisData={emojisData}/>}
 
       </Container>
     </div>
