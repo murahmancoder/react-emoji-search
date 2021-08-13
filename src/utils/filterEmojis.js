@@ -1,14 +1,14 @@
-export const filterEmojis = (EmojisData, seachText="", maxResult=20) =>{
+export const filterEmojis = ({emojisData, searchText="", maxResults=20}) => {
 
     // dialam filter mereturn emojisData dengan alias emoji sebagai function
-    const filteredEmojis= EmojisData.filter(emoji => {
+    const filteredEmojis= emojisData.filter(emoji => {
 
-        if(emoji.title.toLowerCase().includes(seachText.toLowerCase())){
+        if(emoji.title.toLowerCase().includes(searchText.toLowerCase())){
             return true
         }
 
-        if(emoji.keyword.toLowerCase().includes(seachText.toLowerCase())){
-            true
+        if(emoji.keywords.toLowerCase().includes(searchText.toLowerCase())){
+            return true
         }
 
         return false
@@ -18,5 +18,5 @@ export const filterEmojis = (EmojisData, seachText="", maxResult=20) =>{
 
     // filteredEmoji berisi data yang sudah difilter sesuai kondisi 
     // dan dikembalikan sesuai maxresult dgn array splice
-    return filteredEmojis.splice(0, maxResult)
+    return filteredEmojis.splice(0, maxResults)
 }
