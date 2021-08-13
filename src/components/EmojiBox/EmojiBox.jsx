@@ -1,10 +1,26 @@
-import styles from './EmojiBox.module.css'
+import styles from './EmojiBox.module.css';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import cx from 'classnames';
 
-import PropTypes from 'prop-types'
 
 const EmojiBox = ({ symbol, title }) => {
+    const [selected, setSelected] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => setSelected(false), 600)
+
+        return () => clearTimeout(timer)
+    }, [selected])
+
     return (
-        <div className={styles.emojiBox}>
+        // jika selected true maka di cx selected dijalankan
+        <div className={cx(styles.emojiBox, { [styles.selected]: selected })}
+            onClick={() => {
+                navigator.clipboard.writeText(symbol)
+                setSelected(true)
+            }}
+        >
             <p
                 className={styles.emoji}
                 dangerouslySetInnerHTML={{
@@ -13,7 +29,9 @@ const EmojiBox = ({ symbol, title }) => {
 
             />
 
-            <p className={styles.emojiText}>{title}</p>
+            <p className={styles.emojiText}>
+                {selected ? 'Copied!' : title}
+            </p>
         </div>
     )
 }
