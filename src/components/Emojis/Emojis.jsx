@@ -4,6 +4,7 @@ import EmojiBox from '../EmojiBox/EmojiBox'
 import styles from './Emojis.module.css'
 
 import { filterEmojis } from '../../utils/filterEmojis';
+import Empty from '../Empty/Empty';
 
 const Emojis = ({ emojisData, searchText }) => {
     const [filteredEmojis, setFilteredEmojis] = useState([]);
@@ -18,20 +19,28 @@ const Emojis = ({ emojisData, searchText }) => {
         }))
     }, [emojisData, searchText])
 
-    return (
-        <div className={styles.emojisGrid}>
-            {/* dibawah tidak pake return karena sudah diganti kurung nya jadi () bukan {} */}
-            {filteredEmojis.map((data, index) => (
 
-                <EmojiBox
-                    key={index}
-                    title={data.title}
-                    symbol={data.symbol}
-                />
+    if (filteredEmojis.length > 0) {
+        return (
+            <div className={styles.emojisGrid}>
+                {/* dibawah tidak pake return karena sudah diganti kurung nya jadi () bukan {} */}
+                {filteredEmojis.map((data, index) => (
 
-            ))}
-        </div>
-    )
+                    <EmojiBox
+                        key={index}
+                        title={data.title}
+                        symbol={data.symbol}
+                    />
+
+                ))}
+            </div>
+        )
+    } else {
+        return (
+            <Empty text="Oopss... data yang anda cari tidak ada" />
+        )
+    }
+
 }
 
 Emojis.propTypes = {

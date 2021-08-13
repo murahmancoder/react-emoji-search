@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Container from "./components/Container/Container";
 import Empty from "./components/Empty/Empty";
 import Emojis from "./components/Emojis/Emojis";
+import Input from "./components/Input/Input";
 
 function App() {
   const [emojisData, setEmojisData] = useState([]);
@@ -46,15 +47,22 @@ function App() {
   // console.log("error", error);
   // console.log("res", emojisData);
 
+  // fungsi menghandle input untuk searchtext
+  const [searchText, setSearchText] = useState('')
+  const handleOnChange = (e) =>{ 
+      setSearchText(e.target.value)
+  }
+
+  console.log(searchText)
+
   return (
     <div>
       <Navbar/>
       <Container>
-      <h1>Hello World</h1>
-      {loading && <Empty text={'loading...'}/>}
-      {error && <Empty text={'wah error nih...'}/>}
-      {emojisData.length > 0 && <Emojis emojisData={emojisData}/>}
-
+        <Input onChange={handleOnChange} value={searchText}/>
+        {loading && <Empty text={'loading...'}/>}
+        {error && <Empty text={'wah error nih...'}/>}
+        {emojisData.length > 0 && <Emojis emojisData={emojisData} searchText={searchText}/>}
       </Container>
     </div>
   );
